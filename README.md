@@ -54,6 +54,20 @@
 ![10](https://user-images.githubusercontent.com/54887506/114271651-5d18d580-9a4d-11eb-83cf-e08b3949a875.jpg) <br />
 
 
+<br /> <br /> <br /> <br />
+
+## 인터페이스 요구사항 (클라이언트)
+![12](https://user-images.githubusercontent.com/54887506/114274699-b804f980-9a5a-11eb-8565-8a9e92d70363.jpg)<br />
+![13](https://user-images.githubusercontent.com/54887506/114274700-b89d9000-9a5a-11eb-8141-18ed49ef65be.jpg)<br />
+![14](https://user-images.githubusercontent.com/54887506/114274701-b9362680-9a5a-11eb-969c-d8ee7b092b5c.jpg)<br />
+![15](https://user-images.githubusercontent.com/54887506/114274702-b9362680-9a5a-11eb-9f35-8bffb9269c86.jpg)<br />
+![16](https://user-images.githubusercontent.com/54887506/114274703-b9cebd00-9a5a-11eb-8c26-8e6280970944.jpg)<br />
+![17](https://user-images.githubusercontent.com/54887506/114274705-b9cebd00-9a5a-11eb-9deb-b6d710d22f39.jpg)<br />
+![18](https://user-images.githubusercontent.com/54887506/114274707-ba675380-9a5a-11eb-98d7-ab6f0e664182.jpg)<br />
+![19](https://user-images.githubusercontent.com/54887506/114274709-ba675380-9a5a-11eb-9f1b-e614c8eb59db.jpg)<br />
+![20](https://user-images.githubusercontent.com/54887506/114274710-baffea00-9a5a-11eb-9a11-02f25b44ec6d.jpg)<br />
+![21](https://user-images.githubusercontent.com/54887506/114274711-baffea00-9a5a-11eb-8942-fd33f5c58be8.jpg)<br />
+![22](https://user-images.githubusercontent.com/54887506/114274712-bb988080-9a5a-11eb-90ae-cac48498d01d.jpg)<br />
 
 
 
