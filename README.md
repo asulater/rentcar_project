@@ -28,7 +28,7 @@
 ## 목표 시스템 개념도
 
 ![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg) <br /><br />
-## 인터페이스 
+## 인터페이스 요구사항 (클라이언트)
 
 ![2](https://user-images.githubusercontent.com/54887506/114271643-5a1de500-9a4d-11eb-9c23-10682fddb444.jpg) <br />
 ![3](https://user-images.githubusercontent.com/54887506/114271644-5ab67b80-9a4d-11eb-9f69-c330bf9d2385.jpg) <br />
