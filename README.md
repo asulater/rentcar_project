@@ -25,7 +25,7 @@
 
 <br />
 
-![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg)
+![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg) <br />
 ![2](https://user-images.githubusercontent.com/54887506/114271643-5a1de500-9a4d-11eb-9c23-10682fddb444.jpg)
 ![3](https://user-images.githubusercontent.com/54887506/114271644-5ab67b80-9a4d-11eb-9f69-c330bf9d2385.jpg)
 ![4](https://user-images.githubusercontent.com/54887506/114271645-5ab67b80-9a4d-11eb-8769-c8ada35f1907.jpg)
@@ -46,8 +46,8 @@
 
 
 2015년도에 교육과정에서 진행했던 프로젝트.
-프로젝트 리더로서 요구사항 정의서, 기술서, 설계서, PDCA보고서등을 작성하는 여러가지 경험, 직접 코드 통합까지 해봄.<br />
-발표자료를 직접 (일본어로) 제작해서 발표 <br />
+프로젝트 리더로서 요구사항 정의서, 기술서, 설계서, PDCA보고서등을 작성하는 여러가지 경험 <br />
+프로젝트 시연 및 발표는 일본어로. <br />
 클라이언트 단에 맵을 달아서 출발지와 목적지등을 설정하면 유류비를 계산해주는 기능을 만들었음. (tmap API, DAUM Map을 활용)
 
 <br />
