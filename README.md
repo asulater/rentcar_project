@@ -13,7 +13,7 @@
 	  기간/할인/차량선택/보험/옵션 등을 선택하는 기본적인 사용료 시스템
 	  추가로 Map에서 출발 위치와 도착 위치를 지정해서 차량에 따른 연비를 계산해
 	  고객의 예산 수립에 도움을 줌
-    
+<br />    
 3. 관리자 페이지
 -	관리자는 고객이 입력 한 예약 정보를 확인 후 승인을 내릴 수 있는 결정권이 있고 차량 별로 캘린더를 통해 예약현황을 확인 및 관리 할 수 있다.
 -	사고 발생시 사고 정보를 입력 후 사고차량의 상태를 체크한 문서양식을 다운 받아 작성 후 정비소에 인도한다.
@@ -23,9 +23,21 @@
 -	최고 관리자(지점장)은 인사 관리 시스템으로 사원의 직급을 조절하거나 신입사원의 아이디를 승인한다.
 -	직급에 따라 관리할 수 있는 기능(메뉴)가 다름.
 
+<br />
+
+![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg)
+![2](https://user-images.githubusercontent.com/54887506/114271643-5a1de500-9a4d-11eb-9c23-10682fddb444.jpg)
+![3](https://user-images.githubusercontent.com/54887506/114271644-5ab67b80-9a4d-11eb-9f69-c330bf9d2385.jpg)
+![4](https://user-images.githubusercontent.com/54887506/114271645-5ab67b80-9a4d-11eb-8769-c8ada35f1907.jpg)
+![5](https://user-images.githubusercontent.com/54887506/114271646-5b4f1200-9a4d-11eb-9102-277cc5e5733f.jpg)
+![6](https://user-images.githubusercontent.com/54887506/114271647-5b4f1200-9a4d-11eb-8ed7-12db2696c6b3.jpg)
+![7](https://user-images.githubusercontent.com/54887506/114271648-5be7a880-9a4d-11eb-8d3b-abed372291e9.jpg)
+![8](https://user-images.githubusercontent.com/54887506/114271649-5c803f00-9a4d-11eb-825f-e80ce51d8253.jpg)
+![9](https://user-images.githubusercontent.com/54887506/114271650-5c803f00-9a4d-11eb-93b2-dc779c5f9725.jpg)
+![10](https://user-images.githubusercontent.com/54887506/114271651-5d18d580-9a4d-11eb-83cf-e08b3949a875.jpg)
 
 
-![data engineering activities](https://user-images.githubusercontent.com/54887506/114271566-f693b780-9a4c-11eb-8b16-cfef335af69b.PNG)
+
 
 
 
