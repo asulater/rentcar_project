@@ -25,16 +25,18 @@
 
 <br />
 
-![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg) <br />
-![2](https://user-images.githubusercontent.com/54887506/114271643-5a1de500-9a4d-11eb-9c23-10682fddb444.jpg)
-![3](https://user-images.githubusercontent.com/54887506/114271644-5ab67b80-9a4d-11eb-9f69-c330bf9d2385.jpg)
-![4](https://user-images.githubusercontent.com/54887506/114271645-5ab67b80-9a4d-11eb-8769-c8ada35f1907.jpg)
-![5](https://user-images.githubusercontent.com/54887506/114271646-5b4f1200-9a4d-11eb-9102-277cc5e5733f.jpg)
-![6](https://user-images.githubusercontent.com/54887506/114271647-5b4f1200-9a4d-11eb-8ed7-12db2696c6b3.jpg)
-![7](https://user-images.githubusercontent.com/54887506/114271648-5be7a880-9a4d-11eb-8d3b-abed372291e9.jpg)
-![8](https://user-images.githubusercontent.com/54887506/114271649-5c803f00-9a4d-11eb-825f-e80ce51d8253.jpg)
-![9](https://user-images.githubusercontent.com/54887506/114271650-5c803f00-9a4d-11eb-93b2-dc779c5f9725.jpg)
-![10](https://user-images.githubusercontent.com/54887506/114271651-5d18d580-9a4d-11eb-83cf-e08b3949a875.jpg)
+#목표 시스템 개념도
+![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg) <br /><br />
+#인터페이스 
+![2](https://user-images.githubusercontent.com/54887506/114271643-5a1de500-9a4d-11eb-9c23-10682fddb444.jpg) <br />
+![3](https://user-images.githubusercontent.com/54887506/114271644-5ab67b80-9a4d-11eb-9f69-c330bf9d2385.jpg) <br />
+![4](https://user-images.githubusercontent.com/54887506/114271645-5ab67b80-9a4d-11eb-8769-c8ada35f1907.jpg) <br />
+![5](https://user-images.githubusercontent.com/54887506/114271646-5b4f1200-9a4d-11eb-9102-277cc5e5733f.jpg) <br />
+![6](https://user-images.githubusercontent.com/54887506/114271647-5b4f1200-9a4d-11eb-8ed7-12db2696c6b3.jpg) <br />
+![7](https://user-images.githubusercontent.com/54887506/114271648-5be7a880-9a4d-11eb-8d3b-abed372291e9.jpg) <br />
+![8](https://user-images.githubusercontent.com/54887506/114271649-5c803f00-9a4d-11eb-825f-e80ce51d8253.jpg) <br />
+![9](https://user-images.githubusercontent.com/54887506/114271650-5c803f00-9a4d-11eb-93b2-dc779c5f9725.jpg) <br />
+![10](https://user-images.githubusercontent.com/54887506/114271651-5d18d580-9a4d-11eb-83cf-e08b3949a875.jpg) <br />
 
 
 
