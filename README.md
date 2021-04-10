@@ -23,11 +23,17 @@
 - 최고 관리자(지점장)은 인사 관리 시스템으로 사원의 직급을 조절하거나 신입사원의 아이디를 승인한다.
 - 직급에 따라 관리할 수 있는 기능(메뉴)가 다름.
 
-<br />
+<br /> <br /> <br />
+
 
 ## 목표 시스템 개념도
 
 ![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg) <br /><br />
+
+## DB 설계
+![11](https://user-images.githubusercontent.com/54887506/114271871-8e45d580-9a4e-11eb-9a1e-6ee783a99911.jpg)
+
+
 ## 인터페이스 요구사항 (클라이언트)
 
 ![2](https://user-images.githubusercontent.com/54887506/114271643-5a1de500-9a4d-11eb-9c23-10682fddb444.jpg) <br />
