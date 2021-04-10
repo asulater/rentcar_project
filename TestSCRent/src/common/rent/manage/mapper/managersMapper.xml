@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="common.rent.manage.mapper.managersMapper">
+
+<!-- 사원정보 테이블에 저장하기(디폴트: 미분류) -->
+<insert id="insertManager" parameterType="Managers">
+	insert into managers(id, password, name, phone, email, grade) 
+	values(#{id}, #{password}, #{name}, #{phone}, #{email}, #{grade})
+</insert>
+
+<!-- 특정 사원정보 가져오기 -->
+<select id="selectManager" parameterType="String" resultType="Managers">
+	select id, password, name, phone, email, grade 
+	from managers 
+	where id = #{id}
+</select>
+
+<!-- 조건별 사원 목록 가져오기 -->
+<select id="selectManagersList" parameterType="HashMap" resultType="Managers">
+	select id, password, name, phone, email, grade 
+	from managers
+	<where>
+		<if test="nb != null">and grade = #{nb} </if>
+		<if test="ob!= null">and grade != #{ob} </if>
+	</where>
+</select>
+
+<!-- 특정 사원의 직급 변경하기 -->
+<update id="updateManagerGrade" parameterType="HashMap">
+	update managers
+	set grade = #{grade}
+	where id = #{managerId}
+</update>
+
+</mapper>

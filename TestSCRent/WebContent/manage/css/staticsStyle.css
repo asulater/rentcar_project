@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+/* reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0;padding:0}
+fieldset,img {border:0 none}
+dl,ul,ol,menu,li {list-style:none}
+blockquote, q {quotes: none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+button {border:0 none;background-color:transparent;cursor:pointer}
+body {background:#fff}
+body,th,td,input,select,textarea,button {font-size:12px;line-height:1.5;font-family:'돋움',dotum,sans-serif;color:#333} /* color값은 디자인가이드에 맞게사용 */
+a {color:#333;text-decoration:none}
+a:active, a:hover {text-decoration:underline}
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+
+/* tab */
+.tab_comm {display:block;overflow:hidden;height:40px;border-top:2px solid #585f6f;border-right:1px solid #e4e4e4;background:url(/snippet/image?idx=340) repeat-x 0 0}
+.tab_comm li {float:left}
+.tab_comm .link_tab {float:left;width:auto;height:40px;padding:10px 25px 0 25px;border-left:1px solid #e4e4e4;font-weight:bold;font-family:'굴림',gulim,sans-serif;color:#888;text-align:center;letter-spacing:-1px}
+.tab_comm .link_tab:hover {text-decoration:none}
+.tab_comm .on .link_tab {position:relative;margin-right:-1px;border-right:1px solid #cdcdcd;color:#53abe7;border-left:1px solid #cdcdcd;background-color:#fff}

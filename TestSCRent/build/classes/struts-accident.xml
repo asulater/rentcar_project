@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+
+
+	<package name="manageDefault1" namespace="/" extends="default">
+
+		<action name="baek">
+			<result>/baek.jsp</result>
+		</action>
+
+		<action name="menu">
+			<result>/manage/menu.jsp</result>
+		</action>
+		<action name="statics">
+			<result name="success">/manage/jsp/statics.jsp</result>
+		</action>
+		<action name="statics3" method="statics3" class="common.rent.manage.StaticsAction">
+			<result type="json" />
+		</action>
+
+		<action name="buyCar">
+			<result>/manage/jsp/buyCar.jsp</result>
+		</action>
+
+		<action name="insert" class="common.rent.manage.BuyCarAction"
+			method="insert">
+			<result name="success" type="redirect">/manage/buyCar.action</result>
+		</action>
+
+		<action name="addAccident">
+			<result>/manage/jsp/addAccident.jsp</result>
+		</action>
+
+		<action name="insertAccident" class="common.rent.manage.BuyCarAction"
+			method="addAccident">
+			<result name="success" type="redirect">/manage/addAccident.action
+			</result>
+		</action>
+
+		<action name="accList" class="common.rent.manage.BuyCarAction"
+			method="accList">
+			<result name="success">/manage/jsp/accList.jsp</result>
+		</action>
+
+		<action name="accDetail" class="common.rent.manage.BuyCarAction"
+			method="accDetail">
+			<result name="success">/manage/jsp/accDetail.jsp</result>
+		</action>
+
+		<action name="decision" class="common.rent.manage.BuyCarAction"
+			method="decision">
+			<result name="success" type="redirect">/manage/accList.action</result>
+		</action>
+
+		<action name="authorization2" class="common.rent.manage.BuyCarAction"
+			method="authorization2">
+			<result type="json"></result>
+		</action>
+
+		<action name="authorization" class="common.rent.manage.BuyCarAction"
+			method="authorization">
+			<result name="success">/manage/jsp/authorization.jsp</result>
+		</action>
+
+		<action name="approval" class="common.rent.manage.BuyCarAction"
+			method="approval">
+			<result name="success">/manage/menu.jsp</result>
+		</action>
+
+		<action name="approved" class="common.rent.manage.BuyCarAction"
+			method="approved">
+			<result type="json"></result>
+		</action>
+
+		<action name="declinded" class="common.rent.manage.BuyCarAction"
+			method="declinded">
+			<result type="json"></result>
+		</action>
+
+		<action name="downloadpage">
+			<result>/manage/jsp/downloadpage.jsp</result>
+		</action>
+
+		<action name="download" class="common.rent.manage.FileDownloadAction">
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="staticParams" />
+			<interceptor-ref name="params" />
+			<!-- action 에 있는 dir 값 세팅 -->
+			<param name="dir">D:/cardata</param>
+			<result name="success" type="stream">
+				<param name="inputName">inputStream</param>
+				<!-- 아래 =${fileName}은 Action에 있는 fileName값을 읽는다 -->
+				<param name="contentDisposition">attachment; filename=${fileName}</param>
+				<param name="bufferSize">10240000</param>
+			</result>
+		</action>
+
+
+	</package>
+
+</struts>

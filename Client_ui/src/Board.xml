@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.IBoardMapper">
+
+<resultMap id="BoardResult" type="com.example.board.BoardVo">
+	<result property="seq" column="seq" />
+	<result property="writer" column="writer" />
+	<result property="title" column="title" />
+	<result property="content" column="content" />
+	<result property="pwd" column="pwd" />
+	<result property="hit" column="hit" />
+	<result property="groups" column="groups" />
+	<result property="step" column="step" />
+	<result property="levels" column="levels" />
+	<result property="bname" column="bname" />
+	<result property="regdate" column="regdate" />
+</resultMap>
+
+<select id="BoardList" parameterType="java.util.Map" resultMap="BoardResult">
+	
+	select seq, writer, title, content, pwd, hit, groups, step, levels, bname, regdate from
+	(select /*+index_desc(a BOARD_PK)*/ rownum rnum,
+	a.seq, a.writer, a.title, a.content, a.pwd, a.hit, a.groups, a.step, a.levels, a.bname,
+	a.regdate from board a where rownum <![CDATA[ <= ]]> #{end}
+	
+	<if test="bname != null">
+		AND bname = #{bname}
+	</if>
+	
+	<if test="seq != null">
+		AND seq = #{seq}
+	</if>
+	
+	<if test="title != null">
+		AND title = #{title}
+	</if>
+	
+	<if test="content != null">
+		AND content = #{content}
+	</if>
+	
+	<if test="writer != null">
+		AND writer = #{writer}
+	</if>
+	
+	order by groups desc, step asc ) where rnum >= #{start}
+	
+</select>
+
+<select id="BoardCnt" parameterType="java.util.Map" resultType="Integer">
+	
+	select count(*) from board
+	
+	<where>
+		<if test="bname != null">
+			bname = #{bname}
+		</if>
+	</where>
+	
+</select>
+
+<select id="BoardOne" parameterType="java.util.Map" resultMap="BoardResult">
+	select seq, writer, title, content, pwd, hit, groups, step, levels, bname, regdate
+	from board
+	where seq=#{seq} AND bname=#{bname}
+</select>
+
+
+<insert id="BoardInsert" parameterType="com.example.board.BoardVo">
+	insert into board(seq, writer, title, content, pwd, hit, groups, step, levels, bname, regdate)
+	values
+	(bbs1_seq.nextval, #{writer}, #{title}, #{content}, #{pwd}, #{hit}, #{groups}, #{step},
+	#{levels}, #{bname}, sysdate
+	)
+</insert>
+
+<select id="BoardMaxSeq" resultType="Integer">
+	select max(seq) as seq from board
+</select>
+
+<update id="BoardStepUpdate" parameterType="java.util.Map">
+	update board
+	set step=step+1
+	where groups = #{groups} and step > #{step}
+</update>
+
+<update id="BoardHitUpdate" parameterType="java.util.Map">
+	update board
+	set hit=hit+1
+	where seq=#{seq}
+</update>
+
+<update id="BoardUpdate" parameterType="com.example.board.BoardVo">
+	update board set writer=#{writer}, title=#{title}, content=#{content}, pwd=#{pwd}, regdate=sysdate where seq=#{seq}
+</update>
+
+<delete id="BoardDelete" parameterType="Integer">
+	delete from board where seq=#{seq}
+</delete>
+
+</mapper>

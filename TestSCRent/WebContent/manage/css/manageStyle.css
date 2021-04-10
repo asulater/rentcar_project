@@ -1,0 +1,155 @@
+@CHARSET "UTF-8";
+
+/* css 초기화  */
+body { }
+a {text-decoration: none;}
+table {border-collapse: collapse; }
+ol, ul{margin: 0; padding: 0; list-style: none;}
+
+
+/* Wrap 설정 */
+
+
+
+/* 로그인 화면 */
+#loginWrap {width: 700px; height: 300px; display: table-cell; vertical-align: middle;}
+.loginForm {max-width: 250px; height:200px;  margin: 0 auto;}
+  .loginForm input[type="text"] {width: 250px; height: 50px;}
+  .loginForm input[type="password"] {width: 250px; height: 50px;}
+  .loginForm button[type="submit"] {width: 250px; height: 50px;}
+
+.loginBtn {text-align: center;}
+
+
+/* 차량목록 화면 */
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+
+#detailBtn {width: 76px; height: 27px; background:url('../image/detail_info_btn.png')no-repeat; text-indent:-9999px; border: none;}
+#detailBtn:hover {background-position:0 -27px;}
+#detailBtn:ACTIVE {background-position:0 -54px;}
+#accBtn {width: 76px; height: 27px; background:url('../image/acc_info_btn.png')no-repeat; text-indent:-9999px; border: none;}
+#accBtn:hover {background-position:0 -27px;} 
+#accBtn:ACTIVE {background-position:0 -54px;}
+
+#carInfoTable {color: #494c56; border-collapse: separate; width: 80%;}
+#carInfoTable th, td {  padding: 6px 15px;}
+#carInfoTable tr:first-child th:first-child {border-top-left-radius: 6px;}
+#carInfoTable tr:first-child th:last-child {border-top-right-radius: 6px;}
+#carInfoTable tr:nth-child(even) td {background: #eaeaed;}
+#carInfoTable tr:last-child td:first-child {border-bottom-left-radius: 6px;}
+#carInfoTable tr:last-child td:last-child {border-bottom-right-radius: 6px;}
+
+#carInfoTitle {height: 35px; border-bottom: 2px solid #369; font-weight: bold;}
+#carInfoTitle th {height: 35px;  background: #5f6270;  color: #fff;  text-align: center;  }
+#carInfoTitle .carInfoTitleLine {border-right: 1px solid #c6c9cc; }
+
+#carItem td {width: 100px;  height: 40px; vertical-align: middle; color: #5d6466;  border-right: 1px solid #c6c9cc; border-bottom: 1px solid #c6c9cc; text-align: center; }
+#carItem td:first-child {width: 60px; border-left: 1px solid #c6c9cc; padding-left: 10px; text-align: left; }
+#carItem td:nth-child(2) {width: 130px; text-align: left; padding-left: 10px;}
+
+
+/* 사원등록 화면 */
+#joinWrap {width: 700px; height: 400px; display: table-cell; vertical-align: middle;}
+#joinManagerForm {max-width:500px; margin: 0 auto; }
+  #joinManagerForm input {width: 350px; height: 40px;}
+
+#joinTable td:first-child {width: 150px; height: 39px; border: 1px solid #c2c2c2; padding-left: 5px; color: #369; border-left: 3px solid #369;}
+	
+.buttonWrap {width:500px; margin-top: 20px; text-align: center; }
+  .buttonWrap button {width:100px; height: 30px;}
+	
+
+/* 사고차량 등록 화면 */
+
+#buyCar {width: 600px;}
+.carItem {height: 40px; border-bottom: 1px solid #d6d6d6;}
+.carItem td:first-child {width: 150px; text-align: left; padding-left: 10px; background-color: #f0f3f4;}
+.carItem td:nth-child(2) {padding-left: 10px;}
+
+/* 상세차량정보 화면 */
+.page-header img:HOVER {cursor: pointer;}
+
+.carInfoWrap {width: 700px; height: 420px; display: table-cell; vertical-align: middle;}
+.carInfo {max-width: 600px; margin: 0 auto;}
+
+.defaultcarInfo td {width: 110px; height: 30px; text-align: left; font-size: 1.1em;}
+  .defaultcarInfo td:first-child {font-weight: bold;}
+#carImageBox {position:relative; width: 300px; height: 220; float: left;  display: table-cell; vertical-align: middle;}
+#carImage {width: 180px; height: 160px;  margin: 0 auto;}
+
+#carPerformance {margin-top: 40px; margin-left:10px; font-size: 1.2em; font-weight: bold;}
+.performanceCarInfo {margin-top: 10px; border: 1px solid #d2d2d2;}
+  .performanceCarInfo tr:FIRST-CHILD {background-color: #e9e9e9;}
+  .performanceCarInfo td {width: 110px; height: 35px; text-align: center;}
+
+
+/* 차량사고내역 화면 */
+
+#accListTable td {max-width: 150px; min-width: 100px; text-align: center; height: 30px; border-bottom: 1px solid #d4d4d4;}
+  #accLIstTable td:nth-child(3) {max-width: 230px; min-width: 200px;}
+  #accLIstTable td:nth-child(6) {max-width: 40px; min-width: 300px;}
+#accListTitle { border-bottom: 2px solid #428bca; height: 40px; }
+
+
+/* 예약일정(달력) popup 부분 */
+.scheduleWindow {width:230px; height:230px; background-color: rgba( 255, 255, 255, 0.0 );position:absolute; z-index:990; display:none;}
+.closeScheduleWin {width:15px; height:15px; position:reletive;background-color: silver;  z-index:1000; display:none;}
+
+
+/* 예약확인 화면 */
+#reserveListView {padding: 5px; width: 800px; height: 550px;}
+#pageWrap {width: 800px; height: 65px; margin: 0 auto;}
+
+#reserveListTable {font-size: 0.9em;}
+#reserveListTable #reserveListTitle {height: 40px; border-top: 2px solid #369; border-bottom: 2px solid #e9e9e9; vertical-align: middle; background-color: #f7f7f7;}
+#reserveListTable .reserveItem {height: 45px; border-bottom: 1px solid #c2c2c2; color: #383838;}
+#reserveListTable tr td {width: 100px; text-align: center; border-bottom: }
+#reserveListTitle th {text-align: center;}  
+
+
+/* 예약 취소목록 화면 */
+#cancelListTable {font-size: 0.9em;}
+#cancelListTable tr td {width: 90px; text-align: center; border-bottom: }
+#cancelListTable .reserveItem {height: 45px; border-bottom: 1px solid #c2c2c2; color: #383838;}
+#cancelListTitle {height: 40px; border-top: 2px solid #369; border-bottom: 2px solid #e9e9e9; vertical-align: middle;  background-color: #f7f7f7;}
+#cancelListTitle td:nth-child(2) {width: 100px;}
+#cancelListTitle td:nth-child(3) {width: 120px;}
+#cancelListTitle td:nth-child(4) {width: 120px;}
+#cancelReserveBtn {width: 76px; height: 27px; background:url('../image/cancel_chk_btn.png')no-repeat; text-indent:-9999px; border: none;}
+#cancelReserveBtn:hover {background-position:0 -27px;}
+#cancelReserveBtn:active {background-position:0 -54px;} 
+
+/* 예약신청 정보 상세보기 */
+.pop-layer {display:none; position: absolute; top: 50%; left: 50%; width: 500px; height:auto;  background-color:#fff; border: 5px solid #3571B5; z-index: 10;}	
+	.pop-layer .pop-container {padding: 15px 20px;}
+	.pop-layer p.ctxt {color: #666; line-height: 25px;}
+	.pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
+
+	.cbtn {display:inline-block; height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px;}	
+	.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;}
+
+
+/* 사원목록 화면 */
+#managerListWrap {width: 600px;}
+#searchCondition {width: 600px; height: 30px; margin-bottom: 10px;}
+#searchCondition button {float: right;}
+#managersListTable {}
+#managersListTitle {height: 35px; border-top: 2px solid #369; border-bottom: 2px solid #e9e9e9; vertical-align: middle;}
+#managersListTitle td {width:150px; height: 35px; text-align: center;}
+.managerItem {height: 40px; border-bottom: 1px solid #ddd;}
+.managerItem td {padding-left: 20px;}
+.managerItem td:last-child {padding-left: 0; text-align: center;}
+
+/* 상세 사원정보 화면 */
+#detailManagerInfoTable td:nth-child(2) {width: 350px; height: 40px; border: 1px solid #c2c2c2; padding-left:15px;}
+#detailManagerInfoTable td:first-child {width: 150px; height: 39px; border: 1px solid #c2c2c2; padding-left: 5px; color: #369; border-left: 3px solid #369;}
+#changeCommitBtn {width: 120px; height: 30px;}
+
+

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+<package name="client" namespace="/" extends="default">
+	
+	<action name="joinForm">
+		<result>/Client/jsp/joinForm.jsp</result>
+	</action>
+	<action name="goIdCheckForm">
+		<result>/Client/jsp/idCheck.jsp</result>
+	</action>
+	<action name="idCheck" class="common.rent.client.MemberAction" method="IdCheck">
+		<result name="success">/Client/jsp/idCheck.jsp</result>
+		<result name="input">/Client/jsp/idCheck.jsp</result>
+	</action>
+
+	<action name="join" class="common.rent.client.MemberAction" method="Join">
+		<result name="success" type="redirect">/index.action</result>
+	</action>
+	
+	<action name="loginForm">
+		<result>/Client/jsp/loginForm.jsp</result>
+	</action>
+	<action name="login" class="common.rent.client.MemberAction" method="Login">
+		<result name="success" type="json"></result>
+	</action>
+	
+	<action name="logout" class="common.rent.client.MemberAction" method="Logout">
+		<result name="success" type="redirect">/index.action</result>
+	</action>
+	
+	<!-- 마이 페이지 -->
+	<action name="myPage">
+		<result>/Client/jsp/myPage.jsp</result>
+	</action>
+	
+	<!-- 고객정보 수정 화면 실행시 로그인 세션을 사용하여 저장된 정보를 불러온다 -->
+	<action name="modifyForm" class="common.rent.client.MemberAction" method="ModifyForm">
+		<result name="success">/Client/jsp/modifyClient.jsp</result>
+	</action>
+	<action name="modifyClient" class="common.rent.client.MemberAction" method="ModifyClient">
+		<result name="success" type="redirect">/myPage.action</result>
+	</action>
+	
+	<!-- 회원 탈퇴 -->
+	<action name="signOutForm">
+		<result>/Client/jsp/signOutForm.jsp</result>
+	</action>
+	<action name="pwCheck" class="common.rent.client.MemberAction" method="PwCheck">
+		<result name="success" type="json"></result>
+	</action>
+	<action name="signOut" class="common.rent.client.MemberAction" method="SignOut">
+		<result name="success" type="redirect">/myPage.action</result>
+	</action>
+	
+	<!-- 예약이력 조회 -->
+	<action name="bookingList" class="common.rent.client.MemberAction" method="BookingList">
+		<result name="success">/Client/jsp/bookingList.jsp</result>
+	</action>
+	
+	<!-- 차량 예약 -->
+	<action name="rentCar">
+ 		<interceptor-ref name="loginStack" />
+		<result>/Client/jsp/rentCar.jsp</result>
+	</action>
+	<action name="rent1">
+		<result>/Client/jsp/rent1.jsp</result>
+	</action>
+	<action name="rent2" class="common.rent.client.RentAction" method="RentCar">
+		<result name="success">/Client/jsp/rent2.jsp</result>
+	</action>
+	
+	<action name="rent3" class="common.rent.client.RentAction" method="RentFuel">
+		<result name="success" type="json"></result>
+	</action>
+	<action name="rent3_1" class="common.rent.client.RentAction" method="RentFuelCal">
+		<result name="success">/Client/jsp/rent3.jsp</result>
+	</action>
+	
+	<action name="navi">
+		<result>/Client/jsp/tmapnavi.jsp</result>
+	</action>
+	<action name="mapTest">
+		<result>/Client/jsp/map.jsp</result>
+	</action>
+	
+	
+	<!-- 연료별 예상비용 비교 -->
+	<action name="goCostCompare" class="common.rent.client.RentAction" method="CostCompare">
+		<result name="success">/Client/jsp/costCompare.jsp</result>
+	</action>
+	<action name="rent4" class="common.rent.client.RentAction" method="RentPay">
+		<result name="success" type="json"></result>
+	</action>
+	<action name="rent4_1" class="common.rent.client.RentAction" method="RentPayChk">
+		<result name="success">/Client/jsp/rent4.jsp</result>
+	</action>
+	
+	<!-- 예약 실행 -->
+	<action name="rentAction" class="common.rent.client.RentAction" method="Rent">
+		<result name="success" type="json"></result>
+	</action>
+	
+	<!-- 예약 완료 -->
+	<action name="rentSuccess" class="common.rent.client.RentAction" method="RentChk">
+		<result name="success">/Client/jsp/rentSuccess.jsp</result>
+	</action>
+	<!-- 예약 실패 -->
+	<action name="rentFail">
+		<result>/Client/jsp/rentFail.jsp</result>
+	</action>
+	
+	<!-- 예약확인페이지 -->
+	<action name="bookingChk" class="common.rent.client.RentAction" method="BookingChk">
+		<interceptor-ref name="loginStack" />
+		<result name="success">/Client/jsp/bookingChk.jsp</result>
+	</action>
+	<!-- 예약 취소 -->
+	<action name="bookingCancel" class="common.rent.client.RentAction" method="BookingCancel">
+		<result name="success" type="json"></result>
+	</action>
+	
+	<!-- 보유차량 조회 -->
+	<action name="carList" class="common.rent.client.RentAction" method="CarList">
+		<result name="success">/Client/jsp/carList.jsp</result>
+	</action>
+	
+	<!-- 차량 리스트에서 재검색 -->
+	<action name="carList1" class="common.rent.client.RentAction" method="CarList">
+		<result name="success" type="json"></result>
+	</action>
+
+	<action name="carImage" class="common.rent.client.RentAction" method="CarImage">
+		<result name="success" type="stream">
+			<param name="contentLength">${contentLength}</param>
+			<param name="inputName">inputStream</param>
+		</result>
+	</action>
+	
+	<!-- 공지사항 -->
+	<action name="notice" class="common.rent.client.RentAction" method="Notice">
+		<result name="success">/Client/jsp/notice.jsp</result>
+	</action>
+	
+	<!-- 자주하는 질문 -->
+	<action name="faq" class="common.rent.client.RentAction" method="Faq">
+		<result name="success">/Client/jsp/faq.jsp</result>
+	</action>
+	
+	<action name="StartMap">
+		<result>/client/jsp/Map.jsp</result>
+	</action>
+</package>
+</struts>

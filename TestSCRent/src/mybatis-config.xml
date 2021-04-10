@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- DB접속정보 값을 가지고 있는 파일 설정 -->
+	<properties resource="db.properties" />
+
+	<typeAliases>
+		<typeAlias type="common.rent.manage.vo.Managers" alias="Managers" />
+		<typeAlias type="common.rent.manage.vo.Car" alias="Car" />
+		<typeAlias type="common.rent.manage.vo.Accident" alias="Accident" />
+		<typeAlias type="common.rent.manage.vo.AccidentListOfCar" alias="AccidentListOfCar" />
+		<typeAlias type="common.rent.manage.vo.Rent" alias="Rent" />
+		<typeAlias type="common.rent.manage.vo.ReserveListDefault" alias="ReserveListDefault"/>
+		<typeAlias type="common.rent.manage.vo.DetailReserveInfo" alias="DetailReserveInfo"/>
+		<typeAlias type="common.rent.manage.vo.InspectInfo" alias="InspectInfo"/>
+		<typeAlias type="common.rent.manage.vo.CarNotice" alias="CarNotice"/>
+		<typeAlias type="common.rent.manage.vo.TodayReserveTable" alias="TodayReserveTable"/>
+	</typeAliases>
+
+	<!-- DB접속 정보 셋팅 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="common/rent/manage/mapper/managersMapper.xml" />
+		<mapper resource="common/rent/manage/mapper/carInfoMapper.xml" />
+		<mapper resource="common/rent/manage/mapper/scheduleMapper.xml" />
+		<mapper resource="common/rent/manage/mapper/managermapper.xml" />
+		<mapper resource="common/rent/manage/mapper/noticeMapper.xml" />
+	</mappers>
+		
+</configuration>

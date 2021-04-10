@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="common.rent.manage.mapper.scheduleMapper">
+
+<!-- 입력받은 달의 일정리스트 -->
+<select id="selectCurrentMonth" parameterType="HashMap" resultType="Rent">
+	select rentno, startday, endday, car_id
+	from rent 
+	where car_id = #{carid}
+	and to_date(startday, 'YYYY-MM-DD HH24:MI') between to_date(#{date}, 'YYYYMMDD') 
+ 	and ADD_MONTHS(to_date(#{date}, 'YYYYMMDD'), 1)
+</select>
+
+
+<!-- 이달의 전체 일정 갯수 -->
+<select id="selectCurrentMonthScheduleCount" resultType="Integer">
+	select count(*) 
+	from rent
+	where substr(startday, 6, 2) = substr(to_char(sysdate, 'YYYY-MM-DD HH24:MI'), 6, 2)
+</select>
+
+
+<!-- 예약승인 대기중인 신청목록 구하기-->
+<select id="selectReserveListDefault" parameterType="HashMap" resultType="ReserveListDefault">
+	select rentno, subdate, member_id ,startday, endday
+		, carname, fuel, total, obtain, member_name, licensedate 
+	from
+	(select rownum rnum
+		, r.rentno rentno, r.subdate subdate, r.member_id member_id
+		, r.startday startday, r.endday endday, r.carname carname, r.fuel fuel
+		, r.total total, r.obtain obtain, u.name member_name, u.licensedate licensedate 
+		from rent r, members u  
+		where r.obtain = 0
+		and r.cancelchk = 0
+		and r.member_id = u.id 
+    	and rownum <![CDATA[ <= ]]> #{end}
+		order by startday desc ) 
+	where rnum >= #{start}
+</select>
+
+
+<!-- 차량의 사용현황 조회 및 반납 확인을 위한 목록 구하기-->
+<select id="selectIsUseListDefault" parameterType="HashMap"  resultType="ReserveListDefault">
+	select rentno, subdate, member_id ,startday, endday
+		, carname, fuel, total, member_name, licensedate, carstatus
+	from
+	(select rownum rnum
+		, r.rentno rentno, r.subdate subdate, r.member_id member_id
+		, r.startday startday, r.endday endday, r.carname carname, r.fuel fuel
+		, r.total total, u.name member_name, u.licensedate licensedate, c.status carstatus
+		from rent r, members u, car c 
+		where r.obtain = 1
+		and c.carid = r.car_id
+		and (c.status = 1 or c.status = 2)
+		and r.returnchk = 0 
+		and r.member_id = u.id 
+    	and rownum <![CDATA[ <= ]]> #{end}
+		order by startday desc ) 
+	where rnum >= #{start}
+</select>
+
+
+<!-- 예약승인목록 갯수 -->
+<select id="selectReserveListCount" resultType="Integer">
+	select count(*) 
+	from rent   
+	where obtain = 0 
+</select>
+
+<!-- 사용 중, 반납예정목록 갯수 -->
+<select id="selectIsUseListCount" resultType="Integer">
+    select count(*) 
+    from rent
+	where obtain = 1
+	and returnchk = 0 
+</select>
+
+
+<!-- 반납 확인 시 처리 -->
+<update id="updateRentOfReturnCar" parameterType="HashMap">
+	update rent 
+	set returnchk = 1, 
+		overdue = (select round(to_date(#{returnDate}, 'YYYYMMDD') - to_date(endday, 'YYYY-MM-DD HH24:MI'), 0) 
+			from rent
+			where rentno = #{rentno})
+	where rentno = #{rentno} 
+</update>
+
+<!-- 반납시 자동차 상태 변경 -->
+<update id="updateReturnCarStatus" parameterType="HashMap">
+	update car 
+	set status = 0,
+		mileage = #{mileage} 
+	where carid = (select r.car_id from rent r, car c where c.carid = r.car_id and r.rentno = #{rentno})
+</update>
+
+
+
+<!-- 신청목록 중, 특정 예약에 대한 상세 내용 조횐 -->
+<select id="selectDetailReserveInfo" parameterType="HashMap" resultType="DetailReserveInfo">
+	select r.member_id, u.name member_name, u.licensedate
+		, (select count(*) from rent where member_id = #{memberId}) totalrent_count 
+		, (select count(*) from rent where member_id = #{memberId} and overdue != 0 ) overdue_count 
+		, (select count(*) from accident where userid = #{memberId}) acc_count 
+		, r.subdate, r.startday, r.endday, r.carname, r.fuel, r.insurance, r.options, r.car_id carid
+	from rent r, members u  
+	where r.member_id = u.id
+	and r.rentno = #{rentNo}
+</select> 
+
+
+
+<!-- 예약승인 처리 -->
+<update id="updateAppReserveInfo" parameterType="HashMap">
+	update rent 
+	set car_id = #{carid}, obtain = 1 
+	where rentno = #{rentno} 
+</update>
+
+<update id="updateUseCarStatus" parameterType="string">
+	update car 
+	set status = 1 
+	where carid = #{carid}
+</update>
+
+
+<!-- 예약 불승인 처리 -->
+<update id="updateDisappReserveInfo" parameterType="HashMap">
+	update rent 
+	set obtain = 2 
+	where rentno = #{rentno} 
+</update>
+
+<update id="updateWaitingCarStatus" parameterType="string">
+	update car 
+	set status = 0
+	where carid = #{carid}
+</update>
+
+
+<!-- 차량명, 연료, 마지막 대여일에 해당하는 차량 찾기 -->
+<select id="selectCarId" parameterType="HashMap" resultType="DetailReserveInfo">
+	select c.carid, r.endday lastday
+	from car c, rent r  
+    where c.carid = r.car_id 
+    <if test="conditon == 'auto'">
+    and r.endday = to_char(
+    	(select min(TO_DATE(r.endday, 'YYYY-MM-DD HH24:MI')) lastday from car c, rent r 
+    		where c.carid = r.car_id 
+    		and c.status = 0
+    		and r.RETURNCHK = 1 
+    		and r.carname = #{carname}
+    		and r.fuel= #{fuel})
+    	, 'YYYY-MM-DD HH24:MI')
+    </if>
+    <if test="conditon == 'manual'">
+    and c.status = 0
+	and r.RETURNCHK = 1 
+	and r.carname = #{carname}
+	and r.fuel= #{fuel})
+    </if>
+</select>
+
+<!-- 대여 기록 없는 신 차 중에서 차량명, 연료 조건에 맞는 차량 찾기 -->
+<select id="selectNewCarId"  parameterType="HashMap" resultType="DetailReserveInfo">
+	select carid 
+	from car 
+	where carname = #{carname} 
+	and fuel = #{fuel} 
+	and mileage = 0 
+	and status = 0 
+	<if test="conditon == 'auto'">
+		and rownum = 1
+	</if>
+
+</select>
+
+
+<!-- 취소 신청 목록 -->
+<select id="selectCancelList" resultType="ReserveListDefault">
+	select r.rentno rentno, r.subdate subdate, r.member_id member_id
+		, r.startday startday, r.endday endday, r.carname carname, r.fuel fuel
+		, r.total total, u.name member_name, r.car_id carid 
+		from rent r, members u  
+		where r.obtain = 1
+		and r.cancelchk = 1 
+		and r.member_id = u.id 
+</select>
+
+<!-- rent 테이블에서 특정 대여기록 삭제 -->
+<delete id="deleteRentInfo" parameterType="Integer">
+	delete from rent where rentno = #{rentno}
+</delete>
+
+
+<!-- 배차완료, 오늘 나갈 차량 -->
+<select id="selectTodayReserveList" resultType="TodayReserveTable">
+	select r.rentno rentno, r.car_id carid, r.member_id memberid, r.total total
+		, c.carname carname, m.name membername, m.phone memberphone 
+	from rent r, car c, members m 
+	where r.car_id = c.carid 
+	and r.member_id = m.id 
+	and c.status = 1 
+	and to_date(substr(r.startday, 1, 10), 'YYYY-MM-DD') = substr(to_char(sysdate, 'YYYY-MM-DD HH24:MI'), 1,10)
+</select>
+
+<!-- 배차완료 차량을 손님에게 인도했을 경우 -->
+<update id="updateUsingCarStatus" parameterType="string">
+	update car 
+	set status = 2 
+	where carid = #{carid}
+</update>
+
+</mapper>

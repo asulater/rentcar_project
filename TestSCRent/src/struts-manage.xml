@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	
+<!-- 	<include file="hyeon.xml"/> -->
+
+	<!-- 순서주의 interceptors, default action global result -->
+	
+	<package name="manageDefault" namespace="/" extends="default">
+
+		<interceptors>
+	    	<interceptor name="loginInterceptor" class="common.rent.manage.LoginInterceptor"></interceptor>
+	    	<interceptor-stack name="loginInterceptorStack">
+	    		<interceptor-ref name="defaultStack"></interceptor-ref>
+	    		<interceptor-ref name="loginInterceptor"></interceptor-ref>
+	    	</interceptor-stack>
+    	</interceptors>
+
+		<default-action-ref name="index" /> 
+
+    	<global-results>
+    		<result name="login" type="redirect">/manage/goLoginForm.action</result>
+    	</global-results> 
+
+		<action name="index"  class="common.rent.manage.MainPageAction" method="showMainPage">
+			<interceptor-ref name="params"/>
+			<interceptor-ref name="loginInterceptorStack" />
+			<result>/manage/index.jsp</result>
+		</action>
+		
+		<action name="goLoginForm">
+			<result>/manage/jsp/loginForm.jsp</result>
+		</action>
+		
+		<action name="login" class="common.rent.manage.LoginAction">
+			<result name="success" type="chain">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		
+		<action name="logout" class="common.rent.manage.LogoutAction">
+			<result name="success">/manage/jsp/loginForm.jsp</result>
+		</action>
+		
+
+	</package>
+	
+	
+	<package name="manageFunc" namespace="/" extends="manageDefault">
+		
+		<action name="goJoinForm">
+			<result>/manage/jsp/joinManagers.jsp</result>
+		</action>
+		
+		<action name="addManager"  class="common.rent.manage.ManagersAction" method="addManager">
+			<result name="success" type="chain">
+				<param name="actionName">goLoginForm</param>
+			</result>
+		</action>
+		
+		<action name="showCarList"  class="common.rent.manage.CarInfoAction" method="showCarList">
+			<result>/manage/jsp/carInfo.jsp</result>
+		</action>
+		
+		<action name="viewCarImage" class="common.rent.manage.CarInfoAction" method="viewCarImage">
+			<result name="success" type="stream">
+				<param name="contentLength">${contentLength}</param>
+				<param name="contentDisposition">${contentDisposition}</param>
+				<param name="inputName">stream</param>
+			</result>
+		</action>
+		
+		<action name="showDetailInfo" class="common.rent.manage.CarInfoAction" method="showDetailInfo">
+			<result>/manage/jsp/detailCarInfo.jsp</result>
+		</action>
+		
+		<action name="showAccList" class="common.rent.manage.CarInfoAction" method="showAccList">
+			<result>/manage/jsp/historyCarAccident.jsp</result>
+		</action>
+		
+		<action name="showCurrentMonth" class="common.rent.manage.ScheduleAction" method="showCurrentMonth">
+			<result name="success" type="json"></result>
+		</action>
+	
+		<!-- 예약 승인을 위한 목록 -->
+		<action name="showReserveScheduleList" class="common.rent.manage.ScheduleAction" method="showReserveScheduleList">
+			<result>/manage/jsp/reserveSchedule.jsp</result>
+		</action>
+		
+		<!-- 차량 현황 및 반납을 위한 목록 -->
+		<action name="showIsUseList" class="common.rent.manage.ScheduleAction" method="showIsUseList">
+			<result>/manage/jsp/reserveSchedule.jsp</result>
+		</action>
+		
+		<!-- 예약정보 상세보기 -->
+		<action name="showDetailReserveInfo" class="common.rent.manage.ScheduleAction" method="showDetailReserveInfo">
+			<result>/manage/jsp/detailReserveInfo.jsp</result>
+		</action>
+		
+		<!-- 취소 목록 -->
+		<action name="shwoRentCancelList" class="common.rent.manage.ScheduleAction" method="shwoRentCancelList">
+			<result>/manage/jsp/cancelReserveList.jsp</result>
+		</action>
+		
+		<action name="settingAppReserve" class="common.rent.manage.ScheduleAction" method="settingAppReserve">
+			<result type="chain">showReserveScheduleList</result>
+		</action>
+		
+		<action name="settingDisappReserve" class="common.rent.manage.ScheduleAction" method="settingDisappReserve">
+			<result type="chain">showReserveScheduleList</result>
+		</action>
+		
+		<action name="searchingCarId" class="common.rent.manage.ScheduleAction" method="searchingCarId">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<!-- 팝업창에서 반납 확인 시 반납 진행 -->
+		<action name="settingReturnCar" class="common.rent.manage.ScheduleAction" method="settingReturnCar">
+			<result name="success" type="chain">
+				<param name="actionName">showIsUseList</param>
+			</result>
+		</action>
+		
+		<!-- 특정 예약 기록 삭제 -->
+		<action name="deleteRentInfo" class="common.rent.manage.ScheduleAction" method="deleteRentInfo">
+			<result name="success" type="chain">
+				<param name="actionName">shwoRentCancelList</param>
+			</result>
+		</action>
+		
+		
+		<!-- 정기점검 필요한 목록 -->
+		<action name="showInspectCarList" class="common.rent.manage.CarInfoAction" method="showInspectCarList">
+			<result>/manage/jsp/inspectCarList.jsp</result>
+		</action>
+		
+		<!-- 사원관리 -->
+		<action name="searchManagersList" class="common.rent.manage.ManagersAction" method="searchManagersList">
+			<result>/manage/jsp/managersList.jsp</result>
+		</action>
+		
+		<action name="searchManager"  class="common.rent.manage.ManagersAction" method="searchManager">
+			<result>/manage/jsp/detailManagerInfo.jsp</result>
+		</action>
+		
+		<!-- 사원의 직급 변경 -->
+		<action name="updateManagerGrade" class="common.rent.manage.ManagersAction" method="updateManagerGrade">
+			<result name="success" type="chain">
+				<param name="actionName">searchManagersList</param>
+			</result>
+		</action>
+		
+		
+		<!-- 권한 식별을 위해 직급 가져는 액션 -->
+		<action name="searchGradeOfManager" class="common.rent.manage.ManagersAction" method="searchGradeOfManager">
+			<result name="success" type="json"></result>
+		</action>
+		
+		
+		<!-- 게시판(공지) 관련 -->
+		<!-- 공지 가져오기 -->
+		<action name="showNoticeList" class="common.rent.manage.BoardNoticeAction" method="showNoticeList">
+			<result>/manage/jsp/boardNotice.jsp</result>
+		</action>
+		
+		<action name="goWriteBoardNotice">
+			<result>/manage/jsp/writeBoardNotice.jsp</result>
+		</action>
+	
+		<!-- 공지사항 등록 -->
+		<action name="writeNotice" class="common.rent.manage.BoardNoticeAction" method="writeNotice">
+			<result name="success" type="redirect">/manage/showNoticeList.action</result>
+		</action>
+		
+		<!-- 특정 공지사항 가져오기(조회) -->
+		<action name="showNotice" class="common.rent.manage.BoardNoticeAction" method="showNotice">
+			<result>/manage/jsp/detailCarNotice.jsp</result>
+		</action>
+		
+		<!-- 특정 공지사항 가져오기(수정용) -->
+		<action name="updateNoticeForm" class="common.rent.manage.BoardNoticeAction" method="showNotice">
+			<result>/manage/jsp/updateCarNotice.jsp</result>
+		</action>
+		
+		<!-- 특정 공지사항 수정 -->
+		<action name="updateNotice" class="common.rent.manage.BoardNoticeAction" method="updateNotice">
+			<result name="success" type="chain">
+				<param name="actionName">showNotice</param>
+			</result>
+		</action>
+		
+		<!-- 공지 삭제 -->
+		<action name="deleteNotice" class="common.rent.manage.BoardNoticeAction" method="deleteNotice">
+			<result name="success" type="redirect">/manage/showNoticeList.action</result>
+		</action>
+		
+		<!-- 차량 인도 -->
+		<action name="settingUsingCar" class="common.rent.manage.ScheduleAction" method="settingUsingCar">
+			<result name="success" type="chain">
+				<param name="actionName">showIsUseList</param>
+			</result>
+		</action>
+		
+	</package>
+	
+
+</struts>

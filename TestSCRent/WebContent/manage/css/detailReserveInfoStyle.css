@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+/* 상세예약정보 화면 */
+#detailReserveTitle {font-weight: bold; margin-bottom: 15px;}
+#detailReserveWrap {}
+
+.infoItemTitle {height: 30px; display: block; vertical-align: middle;}
+	.infoItemTitle img {width: 25px; height: 25px; float: left;}
+	.infoItemTitle .rightTitle {position: relative; float: right; height: 25px;v}
+	.infoItemTitle .titleLeft {position: relative; float: left; height: 25px;}
+.infoItem {float: none; margin-bottom: 15px;}
+.infoItem #carInfoItem {}
+
+#selectCarIdBtn {width: 42px; height: 24px; background:url('../image/select_carid_btn.png')no-repeat; text-indent:-9999px; border: none;}
+#selectCarIdBtn:hover {background-position:0 -24px;} 
+
+
+
+

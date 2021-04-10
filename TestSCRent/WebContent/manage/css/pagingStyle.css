@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+/* 공통 */
+.img_sample {background:url(/snippet/image?idx=59) no-repeat 0 0}
+ 
+/* 페이징 */
+.paging_comm {font-weight:bold;font-size:14px;line-height:14px;text-align:center;vertical-align:top}
+.paging_comm .link_page {display:inline-block;padding:4px 6px 3px 5px;margin-right:1px; border:1px solid #eaeaea; color:#33338c; text-decoration:none}
+.paging_comm .link_page:hover, .paging_comm em.link_page {border:1px solid #536fe5;color:#536fe5;font-weight:bold}
+.paging_comm .img_sample {display:inline-block;padding:6px 2px 4px 3px;border:0 none;font-weight:normal;color:#999;text-decoration:none}
+.paging_comm .link_page:hover {text-decoration:none}
+.paging_comm .btn_prev {padding-left:6px;background-position:0 10px}
+.paging_comm .btn_next {padding-right:7px;background-position:100% -10px}
+.paging_comm a.btn_prev:hover {background-position:0 -30px;color:#333}
+.paging_comm a.btn_next:hover {background-position:100% -50px;color:#333}
+.paging_comm span.btn_prev {background-position:0 10px;color:#999}
+.paging_comm span.btn_next {background-position:100% -10px;color:#999}

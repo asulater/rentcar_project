@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="common.rent.manage.mapper.managermapper">
+
+
+
+	<select resultType="common.rent.manage.vo.SpringbestCar" id="getSpringbestCarList">
+   <![CDATA[ select row_number() over(order by sale desc) rank, carname, sale from (select c.carname carname, count(r.rentno) sale from rent r, car c where to_char(r.subdate, 'mm') >=3 and to_char(r.subdate, 'mm') < 6 and r.obtain = 1 and r.car_id = c.carid group by c.carname order by sale desc) ]]>
+   </select>
+   
+   <select resultType="common.rent.manage.vo.SummerbestCar" id="getSummerbestCarList">
+   <![CDATA[ select row_number() over(order by sale desc) rank, carname, sale from (select c.carname carname, count(r.rentno) sale from rent r, car c where to_char(r.subdate, 'mm') >= 6 and to_char(r.subdate, 'mm') < 9 and r.obtain = 1 and r.car_id = c.carid group by c.carname order by sale desc) ]]>
+   </select>
+
+   <select resultType="common.rent.manage.vo.FallbestCar" id="getFallbestCarList">
+   <![CDATA[ select row_number() over(order by sale desc) rank, carname, sale from (select c.carname carname, count(r.rentno) sale from rent r, car c where to_char(r.subdate, 'mm') >=10 and to_char(r.subdate, 'mm') < 12 and r.obtain = 1 and r.car_id = c.carid group by c.carname order by sale desc) ]]>
+   </select>
+
+   <select resultType="common.rent.manage.vo.WinterbestCar" id="getWinterbestCarList">
+   <![CDATA[ select row_number() over(order by sale desc) rank, carname, sale from (select c.carname carname, count(r.rentno) sale from rent r, car c where to_char(r.subdate, 'mm') >=12 and to_char(r.subdate, 'mm') < 3 and r.obtain = 1 and r.car_id = c.carid group by c.carname order by sale desc) ]]>
+   </select>
+
+
+
+
+
+
+	<select id="getYearlylist" resultType="common.rent.manage.vo.Yearly">
+	select to_char(r.subdate, 'yyyy-mm') year, count(r.rentno) count from rent r group by  to_char(r.subdate, 'yyyy-mm') order by  to_char(r.subdate, 'yyyy-mm') asc
+	</select>
+	
+	<select id="getStatics1" resultType="common.rent.manage.vo.StaticsVO">
+	<![CDATA[ 
+	select rownum rank, id, sale from (select m.id id, count(r.rentno) sale from rent r, members m where r.member_id = m.id group by m.id order by sale desc)
+	where rownum <= 10
+	]]>
+	</select>
+	
+	<select id="getBestCarList" resultType="common.rent.manage.vo.BestCar">
+	 select row_number() over(order by sale desc) rank, carname, sale from (select c.carname carname, count(r.rentno) sale 
+	 from rent r, car c where r.obtain = 1 and r.car_id = c.carid group by c.carname order by sale desc)
+	</select>
+	
+	<select id="getFflist" resultType="common.rent.manage.vo.FavoriteFuel">
+	 select x.fuel, x.sale from (select c.fuel, count(r.car_id) sale
+	 from car c, rent r where c.carid = r.car_id group by c.fuel order by sale desc) x
+	</select>
+
+	<insert id="insert" parameterType="common.rent.manage.vo.Car">
+		insert into car(carid,carname,cartype,company,price,km,persons,fuel,maxoutput,capacity,picture,status)
+		values(#{carid}, #{carname}, #{cartype}, #{company}, #{price}, #{km},
+		#{persons}, #{fuel}, #{maxoutput}, #{capacity}, #{picture}, #{status})
+	</insert>
+	
+	<insert id="insertCarApproval" parameterType="common.rent.manage.vo.Approval">
+	insert into approval(approvalno, carid, requestid, category, requestdate) values(SEQ_approval_approvalno.nextval, #{carid},#{requestid},#{category}, sysdate)
+	</insert>
+
+	<insert id="addAccident" parameterType="common.rent.manage.vo.Accident">
+		insert into Accident(accidentno, carid, userid, accidentdate, comments, documentno, managerid) values(SEQ_accident_accidentno.nextval, #{carid},#{userid}, to_date(#{accidentdate}, 'YYYYMMDD'),
+		#{comments},#{documentno},#{managerid})
+	</insert>
+
+	<select id="getAllaccList" resultType="common.rent.manage.vo.Accident">
+		select a.ACCIDENTNO, a.CARID, a.USERID, a.ACCIDENTDATE, a.COMMENTS, a.DOCUMENTNO, a.MANAGERID from Accident a, car c 
+		where c.status = 3 
+		and c.carid =a.carid 
+		and a.status = 0
+	</select>
+
+	<select id="getAuthorizationList" parameterType="int" resultType="common.rent.manage.vo.Accident">
+		select a.accidentno, a.carid, a.userid, a.accidentdate, a.comments,	a.documentno, a.managerid from car c, accident a 
+		where c.status like	#{status}
+		and a.carid = c.carid
+	</select>
+
+	<select id="getAllCar" resultType="common.rent.manage.vo.CarAuthorization" parameterType="int">
+		select a.requestid, a.category, c.carid, c.carname, c.cartype, c.company, c.price, c.km, c.persons, c.fuel, c.maxoutput, c.capacity, c.picture, c.status
+		from car c, approval a where c.status = #{value} and a.carid = c.carid
+	</select>
+
+	<update id="updateStatus" parameterType="HashMap">
+		update car set status=#{status} where carid=#{carid}
+	</update>
+	
+	<!-- 파라미터 String carid 에서  int accidentno으로 변경 -->
+	<select id="selectAccident" parameterType="int" resultType="common.rent.manage.vo.Accident">
+	select accidentno, carid, userid, accidentdate, comments, documentno, managerid from accident where accidentno = #{accidentno}
+	</select>
+	
+	<insert id="insertApproval" parameterType="common.rent.manage.vo.Approval">
+	insert into approval values(SEQ_approval_approvalno.nextval, #{carid}, #{accidentno},#{requestid},#{category}, #{appcomment}, sysdate)   
+	</insert> 
+	
+	<!-- 검색조건 카테고리로 변경 -->
+	<select id="getApprovalList" parameterType="string" resultType="common.rent.manage.vo.Authorization">
+	select to_char(a.REQUESTDATE, 'YYYYMMdd') requestdate, a.category, a.ACCIDENTNO, a.REQUESTID, a.carid, a.APPCOMMENT 
+	from approval a
+	where a.category = #{category} 
+	</select>
+	
+	<delete id="deleteCar" parameterType="String">
+	delete from car where carid like #{carid}
+	</delete>
+	
+	<delete id="deleteApproval" parameterType="String">
+	delete from approval where carid like #{carid}
+	</delete>
+ 
+	<!-- 블럭해지나 폐차승인시, 사고이력 테이블의 status 1로 변경하여 처리 완료 기재해야함 -->
+	<update id="updateAccidentStatus" parameterType="int">
+		update accident set status = 1 where accidentno = #{accidentno}
+	</update>
+
+</mapper>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="common.rent.manage.mapper.noticeMapper">
+	<!-- 공지사항 공지목록 자겨오기 -->
+	<select id="selectNoticeList" resultType="CarNotice">
+		select noticeno, title, content, count, insertdate 
+		from
+			(select rownum rnum, noticeno, title, content, count, substr(to_char(insertdate, 'YYYY-MM-DD HH24:mm:SS'), 1, 10) insertdate
+			from car_notice
+    		where rownum <![CDATA[ <= ]]> #{end}
+			order by noticeno desc ) 
+		where rnum >= #{start}
+	</select>
+	
+	
+	<!-- 공지목록 총 갯수 -->
+	<select id="selectNoticeListCount" resultType="Integer">
+		select count(*) from car_notice
+	</select>
+	
+	
+	<!-- 공지 등록 -->
+	<insert id="insertNotice" parameterType="HashMap">
+		insert into car_notice(noticeno, title, content) 
+		values(SEQ_car_notice_noticeNo.nextval, #{title}, #{content})
+	</insert>
+	
+	<!-- 특정 공지 내용보기 -->
+	<select id="selectNotice" parameterType="Integer" resultType="CarNotice">
+		select noticeno, title, content, count, insertdate 
+		from car_notice
+		where noticeno = #{noticeno}
+	</select>
+	
+	<!-- 공지 수정 -->
+	<update id="updateNotice" parameterType="HashMap">
+		update car_notice 
+		set title = #{title},
+			content = #{content}
+		where noticeno = #{noticeno}
+	</update>
+	
+	<!-- 공지 삭제 -->
+	<delete id="deleteNotice" parameterType="Integer">
+		delete car_notice 
+		where noticeno = #{noticeno}
+	</delete>
+	
+
+	
+</mapper>

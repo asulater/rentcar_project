@@ -1,0 +1,135 @@
+/* General styles for all menus */
+.cbp-spmenu {
+	background: #47a3da;
+	position: fixed;
+}
+
+.cbp-spmenu h3 {
+	color: #afdefa;
+	font-size: 1.9em;
+	padding: 20px;
+	margin: 0;
+	font-weight: 300;
+	background: #0d77b6;
+}
+
+.cbp-spmenu a {
+	display: block;
+	color: #fff;
+	font-size: 1.1em;
+	font-weight: 300;
+}
+
+.cbp-spmenu a:hover {
+	background: #258ecd;
+	text-decoration: none;
+}
+
+.cbp-spmenu a:active {
+	background: #afdefa;
+	color: #47a3da;
+}
+
+/* Orientation-dependent styles for the content of the menu */
+
+.cbp-spmenu-vertical {
+	width: 220px;
+	height: 100%;
+	top: 50px;
+	z-index: 500;
+}
+
+
+.cbp-spmenu-vertical a {
+	border-bottom: 1px solid #258ecd;
+	padding: 1em;
+}
+
+
+/* Vertical menu that slides from the left or right */
+
+.cbp-spmenu-left {
+	left: 0px;
+}
+
+
+.cbp-spmenu-left.cbp-spmenu-open {
+	left: 220px;
+}
+
+
+/* Transitions */
+
+.cbp-spmenu,
+.cbp-spmenu-push {
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+
+@media screen and (min-width:1900px) and (max-width: 1920px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 315px;}
+}
+
+@media screen and (min-width:1860px) and (max-width: 1900px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 305px;}
+}
+
+@media screen and (min-width:1820px) and (max-width: 1860px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 295px;}
+}
+
+@media screen and (min-width:1780px) and (max-width: 1820px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 285px;}
+}
+
+@media screen and (min-width:1700px) and (max-width: 1780px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 300px;}
+}
+
+@media screen and (min-width:1660px) and (max-width: 1700px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 275px;}
+}
+
+@media screen and (min-width:1600px) and (max-width: 1660px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 265px;}
+}
+
+@media screen and (min-width:1400px) and (max-width: 1500px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 235px;}
+}
+
+@media screen and (min-width:1280px) and (max-width: 1300px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 215px;}
+}
+
+@media screen and (min-width:1250px) and (max-width: 1280px){
+	.cbp-spmenu-left.cbp-spmenu-open {left: 210px;}
+}
+
+/* Example media queries */
+
+@media screen and (max-width: 55.1875em){
+
+/* 	.cbp-spmenu-horizontal { */
+/* 		font-size: 75%; */
+/* 		height: 110px; */
+/* 	} */
+
+}
+
+@media screen and (max-height: 26.375em){
+
+/* 	.cbp-spmenu-vertical { */
+/* 		font-size: 90%; */
+/* 		width: 190px; */
+/* 	} */
+
+/* 	.cbp-spmenu-left, */
+/* 	.cbp-spmenu-push-toleft { */
+/* 		left: -190px; */
+/* 	} */
+
+}
+

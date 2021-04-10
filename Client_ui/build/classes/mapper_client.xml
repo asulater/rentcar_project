@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="client">
+	<insert id="insertMember" parameterType="Member">
+		insert into members values (#{id},#{password},#{name},#{licenseDate},#{address},#{phone},#{email})
+	</insert>
+	<select id="selectMember" parameterType="String" resultType="Member">
+		select * from members where id = #{id}
+	</select>
+	<update id="updateClient" parameterType="Member">
+		update members
+		<set>
+			password = #{password},
+			address = #{address},
+			phone = #{phone},
+			email = #{email}
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<delete id="signOut" parameterType="String">
+		delete members
+		<where>
+			id = #{id}
+		</where>
+	</delete>
+	
+	
+	<select id="BookingList" parameterType="String" resultType="RentInfo">
+		select carname, fuel, startday, endday, insurance, options, total, subdate, rentno
+		from rent
+		where member_id = #{member_id} and obtain != 2
+		order by subdate desc
+	</select>
+	<select id="rentList" resultType="Rentlist">
+		select
+		c.company, c.fuel, c.carname, count(*) count , f.price
+		from
+		fee f, car c
+		<where>
+		c.carname = f.carname and c.fuel = f.fuel and c.status = 0		
+		</where>
+		group by
+		c.company, c.carname, c.fuel , f.price
+		order by c.company asc, c.carname asc
+	</select>
+	
+	<select id="rentFuel" parameterType="java.util.Map" resultType="RentFuel">
+		select distinct carname, km, fuel
+		from car
+		where carname = #{carName} and fuel = #{fuel}
+	</select>
+	
+	<select id="CostCompare" parameterType="String" resultType="Car">
+		select distinct carname, fuel, km, picture
+		from car
+		where carname = #{carName}
+	</select>
+	
+	<!-- 차량 예약시 가능 대수 확인 쿼리 -->
+	<select id="rentChk" parameterType="Booking" resultType="Integer">
+		select count(*)
+		from car
+		where carname = #{carName} and fuel = #{fuel} and status = 0
+	</select>
+	
+<!-- 	<select id="selectNo" parameterType="Booking" resultType="String">
+		select carid
+		from car
+		where carname = #{carName} and fuel = #{fuel} and status = 0
+		order by carname desc
+	</select> -->
+	<insert id="rentInsert" parameterType="Booking">
+		insert into rent (rentno, startday, endday, member_id, insurance, options, paycheck, subdate, total, carname, fuel)
+		values (SEQ_Rent_rentno.nextval, #{startDay}, #{endDay}, #{member_id}, #{insurance}, #{options}, 1, sysdate, #{total}, #{carName}, #{fuel})
+	</insert>
+<!-- 	<update id="stChange" parameterType="String">
+		update car
+		set status = 1
+		where carid = #{value}
+	</update> -->
+	<select id="rentNo" parameterType="Booking" resultType="Integer">
+		select max(rentno)
+		from rent
+		where member_id = #{member_id}
+	</select>
+	<select id="rentInfo" parameterType="Integer" resultType="RentInfo">
+		select carname, fuel, startday, endday, insurance, options, total, subdate
+		from rent
+		where rentno = #{value}
+	</select>
+	<select id="rentCheck" parameterType="String" resultType="RentInfo">
+		select carname, fuel, startday, endday, insurance, options, total, subdate, rentno
+		from rent
+		where member_id = #{member_id} and obtain = 0
+		order by subdate desc
+	</select>
+	
+	
+	
+	<!-- 예약 정보 삭제 전에 차량의 상태정보를 0으로 바꾸기 -->
+<!-- 	<select id="carInfo" parameterType="Integer" resultType="RentInfo">
+		 select carname, fuel from rent
+		 where rentno = #{rentno}
+	</select> -->
+<!-- 	<select id="searchCarId" parameterType="java.util.Map" resultType="String">
+		select min(carid) from car
+		where status = 1 and carname = #{carName} and fuel = #{fuel}
+	</select> -->
+<!-- 	<update id="statusChg" parameterType="String" >
+		update car
+		set status = 0
+		where carid = #{value}
+	</update> -->
+	<select id="obtainChk" parameterType="Integer" resultType="Integer">
+		select obtain from rent
+		where rentno = #{rentNo}
+	</select>
+	<delete id="bookingCancel1" parameterType="Integer">
+		delete rent
+		where rentno = #{rentNo}
+	</delete>
+	<update id="bookingCancel2" parameterType="Integer">
+		update rent
+		set cancelchk = 1
+		where rentno = #{rentNo}
+	</update>
+	
+				
+	<select id="carList" parameterType="string" resultType="Car">
+		select distinct carname, picture, company, capacity, persons, fuel from car
+		where status != 5
+		<if test="_parameter != null">
+			and cartype = #{value}
+		</if>
+		order by carname asc
+	</select>
+	
+</mapper>
