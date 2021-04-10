@@ -28,12 +28,12 @@
 
 ## 목표 시스템 개념도
 
-![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg) <br /><br />
+![1](https://user-images.githubusercontent.com/54887506/114271641-59854e80-9a4d-11eb-8201-71d16528d8b0.jpg) <br /><br /> <br /><br />
 
-## DB 설계
+## DB ERD
 ![11](https://user-images.githubusercontent.com/54887506/114271871-8e45d580-9a4e-11eb-9a1e-6ee783a99911.jpg)
 
-
+<br /> <br /> <br /> <br />
 ## 인터페이스 요구사항 (클라이언트)
 
 ![2](https://user-images.githubusercontent.com/54887506/114271643-5a1de500-9a4d-11eb-9c23-10682fddb444.jpg) <br />
