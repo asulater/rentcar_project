@@ -4,6 +4,11 @@
 프로젝트 리더로서 요구사항 정의서, 기술서, 설계서, PDCA보고서등을 작성하는 등 여러가지 경험 <br />
 프로젝트 시연 및 발표는 국어, 일본어 2가지로 진행 <br />
 클라이언트 단에 맵을 달아서 출발지와 목적지등을 설정하면 유류비를 계산해주는 기능을 만들었음. (tmap API, DAUM Map을 활용)
+<br />
+
+-사용기술 
+> JAVA, Javascript, Struts2, MyBatis, Oracle, jQuery, Ajax, Tomcat, etc...
+
 
 <br />
 
@@ -56,7 +61,7 @@
 
 <br /> <br /> <br /> <br />
 
-## 인터페이스 요구사항 (클라이언트)
+## 인터페이스 요구사항 (관리자)
 ![12](https://user-images.githubusercontent.com/54887506/114274699-b804f980-9a5a-11eb-8565-8a9e92d70363.jpg)<br />
 ![13](https://user-images.githubusercontent.com/54887506/114274700-b89d9000-9a5a-11eb-8141-18ed49ef65be.jpg)<br />
 ![14](https://user-images.githubusercontent.com/54887506/114274701-b9362680-9a5a-11eb-969c-d8ee7b092b5c.jpg)<br />
