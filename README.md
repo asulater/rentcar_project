@@ -25,6 +25,8 @@
 
 
 
+![data engineering activities](https://user-images.githubusercontent.com/54887506/114271566-f693b780-9a4c-11eb-8b16-cfef335af69b.PNG)
+
 
 
 <br />
