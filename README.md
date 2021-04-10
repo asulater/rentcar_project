@@ -6,7 +6,7 @@
 클라이언트 단에 맵을 달아서 출발지와 목적지등을 설정하면 유류비를 계산해주는 기능을 만들었음. (tmap API, DAUM Map을 활용)
 <br />
 
--사용기술 
+- 사용기술 
 > JAVA, Javascript, Struts2, MyBatis, Oracle, jQuery, Ajax, Tomcat, etc...
 
 
