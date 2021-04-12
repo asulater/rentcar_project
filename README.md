@@ -7,7 +7,7 @@
 <br />
 
 - 사용기술 
-> JAVA, Javascript, Struts2, MyBatis, Oracle, jQuery, Ajax, Tomcat, etc...
+> JAVA, Javascript, Struts2, MyBatis, Oracle, jQuery, Ajax etc...
 
 
 <br />
