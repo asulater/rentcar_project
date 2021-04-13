@@ -9,7 +9,6 @@
 - 사용기술 
 > JAVA, Javascript, Struts2, MyBatis, Oracle, jQuery, Ajax etc...
 
-
 <br />
 
 기본적인 렌터카 프로세스는 존재합니다. 하지만 고객의 Needs를 완벽하게 충족시키는 렌터카 시스템이 없습니다. 
