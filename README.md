@@ -75,7 +75,7 @@
 
 
 ## 실제 구현 화면
-![23](https://user-images.githubusercontent.com/54887506/174427333-6f752f41-32e7-4d9a-bd7a-0e091b075591.png)
-![24](https://user-images.githubusercontent.com/54887506/174427335-df7c3039-b46e-46e7-905f-6119fb44c302.png)
-![25](https://user-images.githubusercontent.com/54887506/174427337-c597c729-7fe5-4c46-a8d8-cd3f51536fcf.png)
+![23](https://user-images.githubusercontent.com/54887506/174427333-6f752f41-32e7-4d9a-bd7a-0e091b075591.png) <br />
+![24](https://user-images.githubusercontent.com/54887506/174427335-df7c3039-b46e-46e7-905f-6119fb44c302.png) <br />
+![25](https://user-images.githubusercontent.com/54887506/174427337-c597c729-7fe5-4c46-a8d8-cd3f51536fcf.png) <br />
 
